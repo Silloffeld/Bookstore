@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "j5N2qyhDP5k=",
+  "dgSpecHash": "cqQVGwFVLr9/Lw7Igo+OTGgrDCRbYTiwsB8LmBvvh1yPIB5RQDDN3Y3PQGjkQvjKu8MgqmY8bKtBWO9CJ/0MOA==",
   "success": true,
   "projectFilePath": "/home/sil/RiderProjects/Bookstore/Bookstore.DataAccess/Bookstore.DataAccess.csproj",
   "expectedPackageFiles": [
@@ -50,6 +50,8 @@
     "/home/sil/.nuget/packages/microsoft.sqlserver.server/1.0.0/microsoft.sqlserver.server.1.0.0.nupkg.sha512",
     "/home/sil/.nuget/packages/microsoft.win32.systemevents/6.0.0/microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "/home/sil/.nuget/packages/mono.texttemplating/2.2.1/mono.texttemplating.2.2.1.nupkg.sha512",
+    "/home/sil/.nuget/packages/mysqlconnector/2.3.5/mysqlconnector.2.3.5.nupkg.sha512",
+    "/home/sil/.nuget/packages/pomelo.entityframeworkcore.mysql/8.0.2/pomelo.entityframeworkcore.mysql.8.0.2.nupkg.sha512",
     "/home/sil/.nuget/packages/system.codedom/4.4.0/system.codedom.4.4.0.nupkg.sha512",
     "/home/sil/.nuget/packages/system.collections.immutable/6.0.0/system.collections.immutable.6.0.0.nupkg.sha512",
     "/home/sil/.nuget/packages/system.composition/6.0.0/system.composition.6.0.0.nupkg.sha512",

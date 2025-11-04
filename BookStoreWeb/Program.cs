@@ -10,8 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseInMemoryDatabase("BookstoreDb"));
+var conn = builder.Configuration.GetConnectionString("BookstoreConnection");
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseMySql(conn, ServerVersion.AutoDetect(conn)));
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options => {
     options.SignIn.RequireConfirmedAccount = false;
