@@ -1,0 +1,16 @@
+@model BookStore.Models.CoverType
+@{
+    ViewData["Title"] = "Kaftsoort wijzigen";
+}
+<h2>Kaftsoort wijzigen</h2>
+<form method="post">
+    <input type="hidden" asp-for="Id" />
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Opslaan</button>
+    <a class="btn btn-secondary" asp-action="Index">Terug naar lijst</a>
+</form>

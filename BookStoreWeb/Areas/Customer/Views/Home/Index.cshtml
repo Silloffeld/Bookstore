@@ -1,0 +1,49 @@
+@model IEnumerable<Product>
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="row pb-3">
+    @foreach(var product in Model)
+    {
+        <div class="col-lg-3 col-md-6">
+            <div class="card border-0 shadow mb-3">
+                <div class="card-body p-4">
+                    <div class="text-center">
+                        <h5 class="card-title h5 text-dark opacity-75 text-uppercase">@product.Title</h5>
+                        <p class="card-text text-center">
+                            <span class="text-muted small">door @product.Author</span>
+                        </p>
+                    </div>
+                    <div>
+                        <p class="card-text">
+                            @Html.Raw(product.Description.Length > 100 ? product.Description.Substring(0, 100) + "..." : product.Description)
+                        </p>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <span class="badge bg-info">@product.Category.Name</span>
+                        </div>
+                        <div class="col-6 text-end">
+                            <span class="badge bg-warning text-dark">@product.CoverType.Name</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent border-top-0">
+                    <div class="row">
+                        <div class="col-12 col-md-6 pb-1">
+                            <span class="text-success fw-bold h5">€@product.Price.ToString("0.00")</span>
+                            <span class="text-decoration-line-through text-muted">€@product.ListPrice.ToString("0.00")</span>
+                        </div>
+                        <div class="col-12 col-md-6 text-end">
+                            <a asp-action="Details" asp-route-id="@product.Id" class="btn btn-primary btn-sm">
+                                Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

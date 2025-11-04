@@ -1,0 +1,17 @@
+@model BookStore.Models.Category
+@{
+    ViewData["Title"] = "Delete";
+}
+<h2>Verwijder categorie</h2>
+<div>
+    <h4>@Model.Name</h4>
+    <dl class="row">
+        <dt class="col-sm-2">Volgorde</dt>
+        <dd class="col-sm-10">@Model.DisplayOrder</dd>
+    </dl>
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="Id" />
+        <button class="btn btn-danger">Verwijder</button>
+        <a class="btn btn-secondary" asp-action="Index">Annuleren</a>
+    </form>
+</div>

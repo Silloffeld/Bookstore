@@ -1,0 +1,20 @@
+@model BookStore.Models.CoverType
+@{
+    ViewData["Title"] = "Kaftsoort verwijderen";
+}
+<h2>Kaftsoort verwijderen</h2>
+<div class="alert alert-warning">
+    Weet je zeker dat je deze kaftsoort wilt verwijderen?
+</div>
+<dl class="row">
+    <dt class="col-sm-3">Id</dt>
+    <dd class="col-sm-9">@Model.Id</dd>
+    
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Name)</dt>
+    <dd class="col-sm-9">@Model.Name</dd>
+</dl>
+<form method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Verwijderen</button>
+    <a class="btn btn-secondary" asp-action="Index">Terug naar lijst</a>
+</form>

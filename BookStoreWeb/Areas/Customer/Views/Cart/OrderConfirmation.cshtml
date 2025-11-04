@@ -1,0 +1,15 @@
+@model int
+
+<div class="container row pt-4">
+    <div class="col-12 text-center">
+        <h1 class="text-primary text-center">Bestelling succesvol geplaatst!</h1>
+        <br /><br />
+        <label class="badge bg-success">Bestelnummer: @Model</label>
+        <br /><br />
+        <img src="~/images/order_confirmation.jpg" width="65%" />
+        <br /><br />
+        <a asp-controller="Home" asp-action="Index" class="btn btn-primary">
+            Terug naar Home
+        </a>
+    </div>
+</div>
