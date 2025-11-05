@@ -43,16 +43,56 @@ namespace BookstoreWeb.Tests
     /// Tests for registration endpoint error handling.
     /// Verifies that the application properly handles validation errors and returns
     /// appropriate HTTP status codes during user registration.
-    /// Note: Anti-forgery token validation is disabled for the Register page using [IgnoreAntiforgeryToken]
-    /// to allow testing of validation logic without CSRF complexity.
+    /// Tests properly extract and include CSRF tokens to validate full security flow.
     /// </summary>
     public class RegistrationTests : IClassFixture<TestWebApplicationFactory>
     {
         private readonly TestWebApplicationFactory _factory;
+        private readonly HtmlParser _htmlParser;
 
         public RegistrationTests(TestWebApplicationFactory factory)
         {
             _factory = factory;
+            _htmlParser = new HtmlParser();
+        }
+
+        /// <summary>
+        /// Extracts the anti-forgery token from the registration page.
+        /// </summary>
+        private async Task<string> GetAntiForgeryToken(HttpClient client)
+        {
+            var response = await client.GetAsync("/Identity/Account/Register");
+            response.EnsureSuccessStatusCode();
+            
+            var content = await response.Content.ReadAsStringAsync();
+            var document = await _htmlParser.ParseDocumentAsync(content);
+            
+            // Look for the antiforgery token input field
+            var tokenInput = document.QuerySelector("input[name='__RequestVerificationToken']");
+            
+            if (tokenInput == null)
+            {
+                throw new InvalidOperationException("Anti-forgery token not found in the registration form");
+            }
+            
+            var tokenValue = tokenInput.GetAttribute("value");
+            if (string.IsNullOrEmpty(tokenValue))
+            {
+                throw new InvalidOperationException("Anti-forgery token value is null or empty");
+            }
+            
+            return tokenValue;
+        }
+
+        /// <summary>
+        /// Creates form content with the anti-forgery token included.
+        /// The WebApplicationFactory HttpClient automatically handles cookies.
+        /// </summary>
+        private async Task<FormUrlEncodedContent> CreateFormWithToken(HttpClient client, Dictionary<string, string> formData)
+        {
+            var token = await GetAntiForgeryToken(client);
+            formData["__RequestVerificationToken"] = token;
+            return new FormUrlEncodedContent(formData);
         }
 
         [Fact]
@@ -70,7 +110,7 @@ namespace BookstoreWeb.Tests
 
             // Act
             var response = await client.PostAsync("/Identity/Account/Register", 
-                new FormUrlEncodedContent(formData));
+                await CreateFormWithToken(client, formData));
 
             // Assert
             var content = await response.Content.ReadAsStringAsync();
@@ -94,7 +134,7 @@ namespace BookstoreWeb.Tests
 
             // Act
             var response = await client.PostAsync("/Identity/Account/Register", 
-                new FormUrlEncodedContent(formData));
+                await CreateFormWithToken(client, formData));
 
             // Assert
             // Should return 200 OK with validation errors displayed on the page
@@ -143,7 +183,7 @@ namespace BookstoreWeb.Tests
 
             // Act
             var response = await client.PostAsync("/Identity/Account/Register", 
-                new FormUrlEncodedContent(formData));
+                await CreateFormWithToken(client, formData));
 
             // Assert
             // With invalid data, should return 200 OK with validation errors displayed
@@ -174,7 +214,7 @@ namespace BookstoreWeb.Tests
 
             // Act
             var response = await client.PostAsync("/Identity/Account/Register", 
-                new FormUrlEncodedContent(formData));
+                await CreateFormWithToken(client, formData));
 
             // Assert
             // With valid data, should redirect (302/303) after successful registration
@@ -208,7 +248,7 @@ namespace BookstoreWeb.Tests
 
             // Act
             var response = await client.PostAsync("/Identity/Account/Register", 
-                new FormUrlEncodedContent(formData));
+                await CreateFormWithToken(client, formData));
 
             // Assert
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
