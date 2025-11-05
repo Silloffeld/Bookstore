@@ -67,10 +67,21 @@ app.MapControllerRoute(
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    db.Database.Migrate();
+    // Only migrate if using a relational database (not in-memory for testing)
+    if (!db.Database.IsInMemory())
+    {
+        db.Database.Migrate();
+    }
+    else
+    {
+        db.Database.EnsureCreated();
+    }
     var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
     DbSeeder.Initialize(db, userManager, roleManager).Wait();
 }
 
 app.Run();
+
+// Make the implicit Program class public for testing
+public partial class Program { }
