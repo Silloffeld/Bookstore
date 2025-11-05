@@ -8,7 +8,6 @@ using Bookstore.Utility;
 
 namespace BookStoreWeb.Areas.Identity.Pages.Account
 {
-    [IgnoreAntiforgeryToken]
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
