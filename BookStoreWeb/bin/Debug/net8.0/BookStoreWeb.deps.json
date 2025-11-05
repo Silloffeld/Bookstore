@@ -942,17 +942,26 @@
           "Pomelo.EntityFrameworkCore.MySql": "8.0.2"
         },
         "runtime": {
-          "Bookstore.DataAccess.dll": {}
+          "Bookstore.DataAccess.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "Bookstore.Models/1.0.0": {
         "runtime": {
-          "Bookstore.Models.dll": {}
+          "Bookstore.Models.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "Bookstore.Utility/1.0.0": {
         "runtime": {
-          "Bookstore.Utility.dll": {}
+          "Bookstore.Utility.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }

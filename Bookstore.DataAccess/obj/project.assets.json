@@ -4355,19 +4355,19 @@
     ]
   },
   "packageFolders": {
-    "/home/sil/.nuget/packages/": {}
+    "/home/runner/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/sil/RiderProjects/Bookstore/Bookstore.DataAccess/Bookstore.DataAccess.csproj",
+      "projectUniqueName": "/home/runner/work/Bookstore/Bookstore/Bookstore.DataAccess/Bookstore.DataAccess.csproj",
       "projectName": "Bookstore.DataAccess",
-      "projectPath": "/home/sil/RiderProjects/Bookstore/Bookstore.DataAccess/Bookstore.DataAccess.csproj",
-      "packagesPath": "/home/sil/.nuget/packages/",
-      "outputPath": "/home/sil/RiderProjects/Bookstore/Bookstore.DataAccess/obj/",
+      "projectPath": "/home/runner/work/Bookstore/Bookstore/Bookstore.DataAccess/Bookstore.DataAccess.csproj",
+      "packagesPath": "/home/runner/.nuget/packages/",
+      "outputPath": "/home/runner/work/Bookstore/Bookstore/Bookstore.DataAccess/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/sil/.nuget/NuGet/NuGet.Config"
+        "/home/runner/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -4379,11 +4379,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "/home/sil/RiderProjects/Bookstore/Bookstore.Models/Bookstore.Models.csproj": {
-              "projectPath": "/home/sil/RiderProjects/Bookstore/Bookstore.Models/Bookstore.Models.csproj"
+            "/home/runner/work/Bookstore/Bookstore/Bookstore.Models/Bookstore.Models.csproj": {
+              "projectPath": "/home/runner/work/Bookstore/Bookstore/Bookstore.Models/Bookstore.Models.csproj"
             },
-            "/home/sil/RiderProjects/Bookstore/Bookstore.Utility/Bookstore.Utility.csproj": {
-              "projectPath": "/home/sil/RiderProjects/Bookstore/Bookstore.Utility/Bookstore.Utility.csproj"
+            "/home/runner/work/Bookstore/Bookstore/Bookstore.Utility/Bookstore.Utility.csproj": {
+              "projectPath": "/home/runner/work/Bookstore/Bookstore/Bookstore.Utility/Bookstore.Utility.csproj"
             }
           }
         }
@@ -4392,6 +4392,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -4437,7 +4442,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/8.0.120/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.415/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
