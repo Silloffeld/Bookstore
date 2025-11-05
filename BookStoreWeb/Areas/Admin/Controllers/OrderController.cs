@@ -40,6 +40,10 @@ namespace BookStoreWeb.Areas.Admin.Controllers
         public IActionResult UpdateOrderDetail()
         {
             var orderHeaderFromDb = _unitOfWork.OrderHeader.GetFirstOrDefault(u => u.Id == OrderVM.OrderHeader.Id);
+            if (orderHeaderFromDb == null)
+            {
+                return NotFound();
+            }
             
             orderHeaderFromDb.Name = OrderVM.OrderHeader.Name;
             orderHeaderFromDb.PhoneNumber = OrderVM.OrderHeader.PhoneNumber;
@@ -80,6 +84,10 @@ namespace BookStoreWeb.Areas.Admin.Controllers
         public IActionResult ShipOrder()
         {
             var orderHeader = _unitOfWork.OrderHeader.GetFirstOrDefault(u => u.Id == OrderVM.OrderHeader.Id);
+            if (orderHeader == null)
+            {
+                return NotFound();
+            }
             orderHeader.TrackingNumber = OrderVM.OrderHeader.TrackingNumber;
             orderHeader.Carrier = OrderVM.OrderHeader.Carrier;
             orderHeader.OrderStatus = "Shipped";
@@ -97,6 +105,10 @@ namespace BookStoreWeb.Areas.Admin.Controllers
         public IActionResult CancelOrder()
         {
             var orderHeader = _unitOfWork.OrderHeader.GetFirstOrDefault(u => u.Id == OrderVM.OrderHeader.Id);
+            if (orderHeader == null)
+            {
+                return NotFound();
+            }
             
             _unitOfWork.OrderHeader.UpdateStatus(OrderVM.OrderHeader.Id, "Cancelled", "Cancelled");
             _unitOfWork.Save();

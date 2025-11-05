@@ -46,6 +46,10 @@ namespace BookStoreWeb.Areas.Customer.Controllers
         public IActionResult Plus(int cartId)
         {
             var cart = _unitOfWork.ShoppingCart.GetFirstOrDefault(u => u.Id == cartId);
+            if (cart == null)
+            {
+                return NotFound();
+            }
             _unitOfWork.ShoppingCart.IncrementCount(cart, 1);
             _unitOfWork.Save();
             return RedirectToAction(nameof(Index));
@@ -54,6 +58,10 @@ namespace BookStoreWeb.Areas.Customer.Controllers
         public IActionResult Minus(int cartId)
         {
             var cart = _unitOfWork.ShoppingCart.GetFirstOrDefault(u => u.Id == cartId);
+            if (cart == null)
+            {
+                return NotFound();
+            }
             if (cart.Count <= 1)
             {
                 _unitOfWork.ShoppingCart.Remove(cart);
@@ -69,6 +77,10 @@ namespace BookStoreWeb.Areas.Customer.Controllers
         public IActionResult Remove(int cartId)
         {
             var cart = _unitOfWork.ShoppingCart.GetFirstOrDefault(u => u.Id == cartId);
+            if (cart == null)
+            {
+                return NotFound();
+            }
             _unitOfWork.ShoppingCart.Remove(cart);
             _unitOfWork.Save();
             return RedirectToAction(nameof(Index));
@@ -183,13 +195,17 @@ namespace BookStoreWeb.Areas.Customer.Controllers
             _unitOfWork.OrderHeader.UpdateStripePaymentID(ShoppingCartVM.OrderHeader.Id, session.Id, session.PaymentIntentId);
             _unitOfWork.Save();
 
-            Response.Headers.Add("Location", session.Url);
+            Response.Headers["Location"] = session.Url;
             return new StatusCodeResult(303);
         }
 
         public IActionResult OrderConfirmation(int id)
         {
             OrderHeader orderHeader = _unitOfWork.OrderHeader.GetFirstOrDefault(u => u.Id == id);
+            if (orderHeader == null)
+            {
+                return NotFound();
+            }
             
             // Verify payment with Stripe
             if (orderHeader.PaymentStatus != SD.PaymentStatusDelayedPayment)
