@@ -91,8 +91,12 @@ namespace BookstoreWeb.Tests
         private async Task<FormUrlEncodedContent> CreateFormWithToken(HttpClient client, Dictionary<string, string> formData)
         {
             var token = await GetAntiForgeryToken(client);
-            formData["__RequestVerificationToken"] = token;
-            return new FormUrlEncodedContent(formData);
+            // Create a new dictionary to avoid mutating the input
+            var formDataWithToken = new Dictionary<string, string>(formData)
+            {
+                ["__RequestVerificationToken"] = token
+            };
+            return new FormUrlEncodedContent(formDataWithToken);
         }
 
         [Fact]
