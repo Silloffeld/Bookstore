@@ -30,18 +30,10 @@ namespace BookStoreWeb.Areas.Admin.Controllers
         {
             ProductVM productVM = new ProductVM()
             {
-                Product = new Product(),
-                CategoryList = _unitOfWork.Category.GetAll().Select(i => new SelectListItem
-                {
-                    Text = i.Name,
-                    Value = i.Id.ToString()
-                }),
-                CoverTypeList = _unitOfWork.CoverType.GetAll().Select(i => new SelectListItem
-                {
-                    Text = i.Name,
-                    Value = i.Id.ToString()
-                })
+                Product = new Product()
             };
+            
+            PopulateDropdownLists(productVM);
 
             if (id == null || id == 0)
             {
@@ -100,18 +92,23 @@ namespace BookStoreWeb.Areas.Admin.Controllers
             }
             
             // Repopulate the dropdown lists when validation fails
-            obj.CategoryList = _unitOfWork.Category.GetAll().Select(i => new SelectListItem
-            {
-                Text = i.Name,
-                Value = i.Id.ToString()
-            });
-            obj.CoverTypeList = _unitOfWork.CoverType.GetAll().Select(i => new SelectListItem
-            {
-                Text = i.Name,
-                Value = i.Id.ToString()
-            });
+            PopulateDropdownLists(obj);
             
             return View(obj);
+        }
+
+        private void PopulateDropdownLists(ProductVM productVM)
+        {
+            productVM.CategoryList = _unitOfWork.Category.GetAll().Select(i => new SelectListItem
+            {
+                Text = i.Name,
+                Value = i.Id.ToString()
+            });
+            productVM.CoverTypeList = _unitOfWork.CoverType.GetAll().Select(i => new SelectListItem
+            {
+                Text = i.Name,
+                Value = i.Id.ToString()
+            });
         }
 
         #region API CALLS
