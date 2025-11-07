@@ -8,19 +8,19 @@
     "net8.0": []
   },
   "packageFolders": {
-    "/home/sil/.nuget/packages/": {}
+    "/home/runner/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/sil/RiderProjects/Bookstore/Bookstore.Models/Bookstore.Models.csproj",
+      "projectUniqueName": "/home/runner/work/Bookstore/Bookstore/Bookstore.Models/Bookstore.Models.csproj",
       "projectName": "Bookstore.Models",
-      "projectPath": "/home/sil/RiderProjects/Bookstore/Bookstore.Models/Bookstore.Models.csproj",
-      "packagesPath": "/home/sil/.nuget/packages/",
-      "outputPath": "/home/sil/RiderProjects/Bookstore/Bookstore.Models/obj/",
+      "projectPath": "/home/runner/work/Bookstore/Bookstore/Bookstore.Models/Bookstore.Models.csproj",
+      "packagesPath": "/home/runner/.nuget/packages/",
+      "outputPath": "/home/runner/work/Bookstore/Bookstore/Bookstore.Models/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/sil/.nuget/NuGet/NuGet.Config"
+        "/home/runner/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -38,6 +38,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -62,7 +67,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/8.0.120/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.415/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

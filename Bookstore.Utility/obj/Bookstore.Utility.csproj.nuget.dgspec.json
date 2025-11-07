@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/sil/RiderProjects/Bookstore/Bookstore.Utility/Bookstore.Utility.csproj": {}
+    "/home/runner/work/Bookstore/Bookstore/Bookstore.Utility/Bookstore.Utility.csproj": {}
   },
   "projects": {
-    "/home/sil/RiderProjects/Bookstore/Bookstore.Utility/Bookstore.Utility.csproj": {
+    "/home/runner/work/Bookstore/Bookstore/Bookstore.Utility/Bookstore.Utility.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/sil/RiderProjects/Bookstore/Bookstore.Utility/Bookstore.Utility.csproj",
+        "projectUniqueName": "/home/runner/work/Bookstore/Bookstore/Bookstore.Utility/Bookstore.Utility.csproj",
         "projectName": "Bookstore.Utility",
-        "projectPath": "/home/sil/RiderProjects/Bookstore/Bookstore.Utility/Bookstore.Utility.csproj",
-        "packagesPath": "/home/sil/.nuget/packages/",
-        "outputPath": "/home/sil/RiderProjects/Bookstore/Bookstore.Utility/obj/",
+        "projectPath": "/home/runner/work/Bookstore/Bookstore/Bookstore.Utility/Bookstore.Utility.csproj",
+        "packagesPath": "/home/runner/.nuget/packages/",
+        "outputPath": "/home/runner/work/Bookstore/Bookstore/Bookstore.Utility/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/sil/.nuget/NuGet/NuGet.Config"
+          "/home/runner/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -32,6 +32,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -53,7 +58,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/8.0.120/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.415/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

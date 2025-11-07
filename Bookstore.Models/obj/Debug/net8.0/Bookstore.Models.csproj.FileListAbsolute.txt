@@ -1,0 +1,12 @@
+/home/runner/work/Bookstore/Bookstore/Bookstore.Models/bin/Debug/net8.0/Bookstore.Models.deps.json
+/home/runner/work/Bookstore/Bookstore/Bookstore.Models/bin/Debug/net8.0/Bookstore.Models.dll
+/home/runner/work/Bookstore/Bookstore/Bookstore.Models/bin/Debug/net8.0/Bookstore.Models.pdb
+/home/runner/work/Bookstore/Bookstore/Bookstore.Models/obj/Debug/net8.0/Bookstore.Models.GeneratedMSBuildEditorConfig.editorconfig
+/home/runner/work/Bookstore/Bookstore/Bookstore.Models/obj/Debug/net8.0/Bookstore.Models.AssemblyInfoInputs.cache
+/home/runner/work/Bookstore/Bookstore/Bookstore.Models/obj/Debug/net8.0/Bookstore.Models.AssemblyInfo.cs
+/home/runner/work/Bookstore/Bookstore/Bookstore.Models/obj/Debug/net8.0/Bookstore.Models.csproj.CoreCompileInputs.cache
+/home/runner/work/Bookstore/Bookstore/Bookstore.Models/obj/Debug/net8.0/Bookstore.Models.sourcelink.json
+/home/runner/work/Bookstore/Bookstore/Bookstore.Models/obj/Debug/net8.0/Bookstore.Models.dll
+/home/runner/work/Bookstore/Bookstore/Bookstore.Models/obj/Debug/net8.0/refint/Bookstore.Models.dll
+/home/runner/work/Bookstore/Bookstore/Bookstore.Models/obj/Debug/net8.0/Bookstore.Models.pdb
+/home/runner/work/Bookstore/Bookstore/Bookstore.Models/obj/Debug/net8.0/ref/Bookstore.Models.dll
