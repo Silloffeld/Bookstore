@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BookStore.Models
 {
@@ -7,6 +8,8 @@ namespace BookStore.Models
         public int Id { get; set; }
         
         public string ApplicationUserId { get; set; } = string.Empty;
+        [ForeignKey("ApplicationUserId")]
+        public ApplicationUser? ApplicationUser { get; set; }
         
         public DateTime OrderDate { get; set; }
         public DateTime ShippingDate { get; set; }

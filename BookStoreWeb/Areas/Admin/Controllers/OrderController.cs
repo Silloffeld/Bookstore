@@ -29,7 +29,7 @@ namespace BookStoreWeb.Areas.Admin.Controllers
         {
             OrderVM = new OrderVM()
             {
-                OrderHeader = _unitOfWork.OrderHeader.GetFirstOrDefault(u => u.Id == orderId, includeProperties: ""),
+                OrderHeader = _unitOfWork.OrderHeader.GetFirstOrDefault(u => u.Id == orderId, includeProperties: "ApplicationUser"),
                 OrderDetail = _unitOfWork.OrderDetail.GetAll(u => u.OrderHeaderId == orderId, includeProperties: "Product")
             };
             return View(OrderVM);
@@ -123,7 +123,7 @@ namespace BookStoreWeb.Areas.Admin.Controllers
         {
             IEnumerable<OrderHeader> orderHeaders;
 
-            orderHeaders = _unitOfWork.OrderHeader.GetAll(includeProperties: "");
+            orderHeaders = _unitOfWork.OrderHeader.GetAll(includeProperties: "ApplicationUser");
             
             switch (status)
             {
