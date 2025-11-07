@@ -134,6 +134,8 @@ namespace BookStoreWeb.Areas.Customer.Controllers
             shoppingCartVM.OrderHeader.OrderDate = DateTime.Now;
             shoppingCartVM.OrderHeader.ApplicationUserId = claim.Value;
 
+            // Reset OrderTotal before calculating to avoid accumulating any existing value
+            shoppingCartVM.OrderHeader.OrderTotal = 0;
             foreach (var cart in shoppingCartVM.CartList)
             {
                 cart.Price = GetPriceBasedOnQuantity(cart.Count, cart.Product.Price,
@@ -143,7 +145,6 @@ namespace BookStoreWeb.Areas.Customer.Controllers
 
             shoppingCartVM.OrderHeader.OrderStatus = SD.StatusPending;
             shoppingCartVM.OrderHeader.PaymentStatus = SD.PaymentStatusPending;
-            shoppingCartVM.OrderHeader.OrderDate = DateTime.Now;
 
             _unitOfWork.OrderHeader.Add(shoppingCartVM.OrderHeader);
             _unitOfWork.Save();
