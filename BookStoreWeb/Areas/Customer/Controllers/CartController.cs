@@ -123,37 +123,37 @@ namespace BookStoreWeb.Areas.Customer.Controllers
         [HttpPost]
         [ActionName("Summary")]
         [ValidateAntiForgeryToken]
-        public IActionResult SummaryPOST()
+        public IActionResult SummaryPOST(ShoppingCartVM shoppingCartVM)
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
 
-            ShoppingCartVM.CartList = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == claim.Value,
+            shoppingCartVM.CartList = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == claim.Value,
                 includeProperties: "Product");
 
-            ShoppingCartVM.OrderHeader.OrderDate = DateTime.Now;
-            ShoppingCartVM.OrderHeader.ApplicationUserId = claim.Value;
+            shoppingCartVM.OrderHeader.OrderDate = DateTime.Now;
+            shoppingCartVM.OrderHeader.ApplicationUserId = claim.Value;
 
-            foreach (var cart in ShoppingCartVM.CartList)
+            foreach (var cart in shoppingCartVM.CartList)
             {
                 cart.Price = GetPriceBasedOnQuantity(cart.Count, cart.Product.Price,
                     cart.Product.Price50, cart.Product.Price100);
-                ShoppingCartVM.OrderHeader.OrderTotal += (cart.Price * cart.Count);
+                shoppingCartVM.OrderHeader.OrderTotal += (cart.Price * cart.Count);
             }
 
-            ShoppingCartVM.OrderHeader.OrderStatus = SD.StatusPending;
-            ShoppingCartVM.OrderHeader.PaymentStatus = SD.PaymentStatusPending;
-            ShoppingCartVM.OrderHeader.OrderDate = DateTime.Now;
+            shoppingCartVM.OrderHeader.OrderStatus = SD.StatusPending;
+            shoppingCartVM.OrderHeader.PaymentStatus = SD.PaymentStatusPending;
+            shoppingCartVM.OrderHeader.OrderDate = DateTime.Now;
 
-            _unitOfWork.OrderHeader.Add(ShoppingCartVM.OrderHeader);
+            _unitOfWork.OrderHeader.Add(shoppingCartVM.OrderHeader);
             _unitOfWork.Save();
 
-            foreach (var cart in ShoppingCartVM.CartList)
+            foreach (var cart in shoppingCartVM.CartList)
             {
                 OrderDetail orderDetail = new OrderDetail()
                 {
                     ProductId = cart.ProductId,
-                    OrderHeaderId = ShoppingCartVM.OrderHeader.Id,
+                    OrderHeaderId = shoppingCartVM.OrderHeader.Id,
                     Price = cart.Price,
                     Count = cart.Count
                 };
@@ -165,13 +165,13 @@ namespace BookStoreWeb.Areas.Customer.Controllers
             var domain = "http://localhost:5000/";
             var options = new SessionCreateOptions
             {
-                SuccessUrl = domain + $"Customer/Cart/OrderConfirmation?id={ShoppingCartVM.OrderHeader.Id}",
+                SuccessUrl = domain + $"Customer/Cart/OrderConfirmation?id={shoppingCartVM.OrderHeader.Id}",
                 CancelUrl = domain + "Customer/Cart/Index",
                 LineItems = new List<SessionLineItemOptions>(),
                 Mode = "payment",
             };
 
-            foreach (var item in ShoppingCartVM.CartList)
+            foreach (var item in shoppingCartVM.CartList)
             {
                 var sessionLineItem = new SessionLineItemOptions
                 {
@@ -192,7 +192,7 @@ namespace BookStoreWeb.Areas.Customer.Controllers
             var service = new SessionService();
             Session session = service.Create(options);
             
-            _unitOfWork.OrderHeader.UpdateStripePaymentID(ShoppingCartVM.OrderHeader.Id, session.Id, session.PaymentIntentId);
+            _unitOfWork.OrderHeader.UpdateStripePaymentID(shoppingCartVM.OrderHeader.Id, session.Id, session.PaymentIntentId);
             _unitOfWork.Save();
 
             Response.Headers["Location"] = session.Url;
